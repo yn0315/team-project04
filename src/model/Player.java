@@ -271,10 +271,13 @@ public class Player {
                         }
 
 
-                        temp = new String[inventory.length - 1];
-                        for (i = 0; i < temp.length; i++) {
-                            temp[i] = inventory[i];
+                        String[] temp3 = new String[inventory.length - 1];
+                        for (i = 0; i < temp3.length; i++) {
+                            temp3[i] = inventory[i];
                         }
+
+                        inventory = temp3;
+                        temp3 = null;
 
                         System.out.println("\n==================================");
                         System.out.println("=        퍼            엉         =");
