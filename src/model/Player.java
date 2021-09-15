@@ -104,6 +104,7 @@ public class Player {
             System.out.println("\n강화 할 아이템를 선택해주시기 바랍니다.");
             System.out.print(">> ");
             String upgradeSelectItem = sc.nextLine();
+            sc.nextLine();
             selectItem = upgradeSelectItem;
 
             // 순차 탐색: 탐색성공시 해당데이터의 인덱스, 실패시 -1
