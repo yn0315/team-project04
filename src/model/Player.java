@@ -40,7 +40,7 @@ public class Player {
 
     /////////////////////////////////////////////////// 생성자 //////////////////////////////////////////////////////////
     public Player() {
-        cost = 50000;
+        cost = 80000;
 
     }
 
@@ -199,8 +199,9 @@ public class Player {
                     //강화 시에 70% 50% 30% 10%씩 확률을 떨어지기하는 기능
                     --upgradePercentCount;
 
+
                     System.out.println("\n다음 강화확률: " + upgradePercentCount * 10 + "%");
-                    System.out.printf("강화비용은 [%d원]입니다.", updateCost * count);//숫자 먼저 올리고 계산하도록 앞에 ++붙임
+                    System.out.printf("강화비용은 [%d원]입니다.\n", updateCost * count);//숫자 먼저 올리고 계산하도록 앞에 ++붙임
                     System.out.println("\n이어서 강화하시겠습니까? [Y/N]");
                     System.out.print(">> ");
                     answer = sc.next();
@@ -254,11 +255,18 @@ public class Player {
                     costBox = temp2;
                     temp2 = null;
 
+                    if(doubleCount == 2) {
+                        System.out.println("\n[Y]. 아이템 파괴하기  [N]. 강화방어권 사용하기(두배의 비용을 지불하고 다시 강화하기)");
+                        System.out.println("\n강화방어권: " + (doubleCount - 1) + "장");
+                        System.out.println("\n강화방어권 사용 시 강화 확률은 이전 확률과 동일하게 적용됩니다!!");
+                        System.out.printf("※ 두배 강화비용은 [%d원]입니다.\n", updateCost * ((count - 1) * 2));
+                    } else {
+                        System.out.println("\n[Y]. 아이템 파괴하기");
+                        System.out.println("\n강화방어권: " + (doubleCount - 1) + "장");
+                        System.out.println("\n강화방어권을 모두 사용해서 아이템이 파괴됩니다...");
+                    }
 
-                    System.out.println("\n[Y]. 아이템 파괴하기  [N]. 강화방어권 사용하기(두배의 비용을 지불하고 다시 강화하기)");
-                    System.out.println("\n강화방어권: " + (doubleCount - 1) + "장");
-                    System.out.println("\n강화방어권 사용 시 강화 확률은 이전 확률과 동일하게 적용됩니다!!");
-                    System.out.printf("※ 두배 강화비용은 [%d원]입니다.\n", updateCost * ((count - 1) * 2));
+
 
 
                     System.out.print(">> ");
