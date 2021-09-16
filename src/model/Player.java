@@ -145,12 +145,10 @@ public class Player {
 
             String answer = "";
 
-            for (int i = 0; i < 10; i++) {//몇 번 반복해야할지 잘 모르겠어서 일단 10으로
+            for (int i = 0; i < 10; i++) {
 
                 boolean startUpgrade = random.nextInt(1, 101) <= upgradePercentCount-- * 10;//10%씩 줄어들도록 설정
-                ///////다른 아이템을 강화하려고 하면 확률이 줄어든 상태에서 시작하는 문제 발생/////////
-                //////기존의 아이템 강화시에는 유지하고 새로운 아이템 강화시 확률 초기화 필요/////////
-                //////계속 강화시도시 확률이 마이너스가 돼서 에러뜨는 현상///////////
+
 
                 //강화시 전체 돈에서 2000 * 1을 먼저 계산한 후에 count++해서 다음 강화비용을 올리고 가지고 있는 돈을 차감하는 기능
                 int costuper = updateCost * count++;
