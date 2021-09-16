@@ -415,7 +415,7 @@ public class Player {
             String times = format2.format(time);
             System.out.println("");
             for (int i = 0; i < successOrFall.length; i++) {
-                System.out.println((i + 1) + ". " + "[시간]: " + times + " " + "[강화성공여부]: " + successOrFall[i] + " " + "[지불한 금액]: " + costBox[i] + "원");
+                System.out.println((i + 1) + ". " + "[날짜]: " + times + " " + "[강화성공여부]: " + successOrFall[i] + " " + "[지불한 금액]: " + costBox[i] + "원");
             }
 
             System.out.println("\n[Y]. 나가기");
