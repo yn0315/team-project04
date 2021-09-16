@@ -7,7 +7,7 @@ public class PlayerController {
 
     public PlayerController() {//회원정보 하나 저장해둠
 
-        p[0] = new Player(new String[]{"기본 검", "보통 활", "기본 갑옷", "고급 지팡이"},80000, "aaa");
+        p[0] = new Player(new String[]{"기본검", "보통활", "기본갑옷", "고급지팡이"},40000, "aaa");
 
     }
 

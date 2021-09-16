@@ -16,13 +16,13 @@ public class Player {
     int idxx = 0; // idx 전역변수
 
     public String id;
-    public String[] inventory = new String[]{"기본 검", "보통 활", "기본 갑옷", "고급 지팡이"};
+    public String[] inventory = new String[]{"기본검", "보통활", "기본갑옷", "고급 지팡이"};
     public int cost;
     public String upgradeCount = "+"; //강화 성공 할 때 마다 뒤에 붙는 숫자 ex) +1, +2, +3...
     int itemCount = 0;
     public int updateCost = 2000;
     int count = 1;//강화할수록 강화비용 올리는 수 2000->4000->6000 이렇게 되도록
-    int upgradePercentCount = 9;
+    int upgradePercentCount = 7;
 
     // 강화 목록에 사용할 필드
     String upgradeSuccess = "강화성공";
@@ -56,10 +56,8 @@ public class Player {
 
     /////////////////////////////////////////////////// 메소드 //////////////////////////////////////////////////////////
     //인벤토리를 보여주는 메소드
-    public void inventoryView() {//메서드 안에서는 String.format을 사용해야 한다고해서 변경했어요. 리턴타입도 String입니다.
-       /* return String.format("\n************* Inventory *************\n" +
-                "아이템 목록: %s\n"+
-                "돈: %d원 \n",Arrays.toString(inventory), cost);*/
+    public void inventoryView() {
+
         while (true) {
             System.out.println("\n************* Inventory *************");
             System.out.printf("아이템 목록: %s\n", Arrays.toString(inventory));
@@ -103,7 +101,7 @@ public class Player {
 
             System.out.println("\n강화 할 아이템를 선택해주시기 바랍니다.");
             System.out.print(">> ");
-            String upgradeSelectItem = sc.nextLine();
+            String upgradeSelectItem = sc.next();
             sc.nextLine();
             selectItem = upgradeSelectItem;
 
@@ -137,6 +135,13 @@ public class Player {
             System.out.println("\n엔터를 누르세요!!");
             sc.nextLine();
 
+            if(cost < updateCost * count) {
+                System.out.println("\n돈이 부족하여 강화를 실행할 수 없습니다!!!!");
+                System.out.println("강화 시스템을 종료합니다...");
+                System.out.println("\n메인으로 돌아갑니다.");
+                System.out.println("====================================");
+                return;
+            }
 
             String answer = "";
 
@@ -208,6 +213,13 @@ public class Player {
                     answer = sc.next();
 
                     if (answer.equalsIgnoreCase("y")) {//강화 다시시도
+                        if(cost < updateCost * count) {
+                            System.out.println("\n돈이 부족하여 강화를 실행할 수 없습니다!!!!");
+                            System.out.println("강화 시스템을 종료합니다...");
+                            System.out.println("\n메인으로 돌아갑니다.");
+                            System.out.println("====================================");
+                            return;
+                        }
                         System.out.println("강화를 시작합니다.");
 
                     } else {
@@ -304,6 +316,7 @@ public class Player {
 
                     } else if (answer.equalsIgnoreCase("n") && doubleCount != 2) {
                         System.out.println("\n강화방어권이 존재하지 않습니다.");
+
                         for (i = idxx; i < inventory.length - 1; i++) {
                             inventory[i] = inventory[i + 1];
 
@@ -333,7 +346,29 @@ public class Player {
                         return;
 
                     } else if (answer.equalsIgnoreCase("n") && doubleCount == 2) {
+                        if(cost < updateCost * count) {
 
+                            for (i = idxx; i < inventory.length - 1; i++) {
+                                inventory[i] = inventory[i + 1];
+
+                            }
+
+
+                            temp = new String[inventory.length - 1];
+                            for (i = 0; i < temp.length; i++) {
+                                temp[i] = inventory[i];
+                            }
+
+                            inventory = temp;
+                            temp = null;
+
+                            System.out.println("\n돈이 부족하여 강화를 실행할 수 없습니다!!!!");
+                            System.out.println("강화 시스템을 종료합니다...");
+                            System.out.println("\n메인으로 돌아갑니다.");
+                            System.out.println("====================================");
+
+                            return;
+                        }
 
                         ///////////////// 4번 메뉴 담는 배열 /////////////////
                         // 강화 성공하면 강화목록에 보여줄 금액을 담는 배열 push

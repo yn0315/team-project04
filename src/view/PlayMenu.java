@@ -162,7 +162,7 @@ public class PlayMenu {
 
         System.out.println("선택한 아이템: " + itemName);
 
-        buyItem(itemName);
+        shop.buyItem(itemName, myPlayer);
 
 
     }
@@ -177,84 +177,19 @@ public class PlayMenu {
         int jobChoice = sc.nextInt();
         sc.nextLine();
         if (jobChoice == 1) {
-            System.out.println("\n<기본 검: 2000원>   <보통 검: 5000원>   <고급 검: 10000원>");
+            System.out.println("\n<기본검: 2000원>   <보통검: 5000원>   <고급검: 10000원>");
             return;
         } else if (jobChoice == 2) {
-            System.out.println("\n<기본 지팡이: 2000원>   <보통 지팡이: 5000원>   <고급 지팡이: 10000원>");
+            System.out.println("\n<기본지팡이: 2000원>   <보통지팡이: 5000원>   <고급지팡이: 10000원>");
             return;
         } else if (jobChoice == 3) {
-            System.out.println("\n<기본 활: 2000원>   <보통 활: 5000원>   <고급 활: 10000원>");
+            System.out.println("\n<기본활: 2000원>   <보통활: 5000원>   <고급활: 10000원>");
             return;
         }
     }
 
-    private void buyItem(String itemName) {
-        for (int i = 0; i < shop.allItem.length; i++) {
-            if (itemName.equals(shop.allItem[i])) {
-                System.out.println("구매를 하시겠습니까? [Y/N]");
-                String answer = sc.next();
-                if (answer.equalsIgnoreCase("y")) {
-                    System.out.println("\n구매가 완료되었습니다.");
-                    System.out.println("\n=====================================");
-                    // 구매할 아이템이 기본시리즈이면 플레이어 돈에서 2000원 차감하는 기능
-                    for (int j = 0; j < shop.basiclItem.length; j++) {
-                        if (itemName.equals(shop.basiclItem[j])) {
-                            myPlayer.cost -= shop.buyCost[0];
-                            break;
-                        }
-                    }
-                    // 구매할 아이템이 기본시리즈이면 플레이어 돈에서 5000원 차감하는 기능
-                    for (int j = 0; j < shop.nomalItem.length; j++) {
-                        if (itemName.equals(shop.nomalItem[j])) {
-                            myPlayer.cost -= shop.buyCost[1];
-                            break;
-                        }
-                    }
 
-                    // 구매할 아이템이 기본시리즈이면 플레이어 돈에서 10000원 차감하는 기능
-                    for (int j = 0; j < shop.highItem.length; j++) {
-                        if (itemName.equals(shop.highItem[j])) {
-                            myPlayer.cost -= shop.buyCost[2];
-                            break;
-                        }
-                    }
-                    // 구매할 아이템이 기본시리즈이면 플레이어 돈에서 8000원 차감하는 기능
-                    for (int j = 0; j < shop.AccessoryItem.length; j++) {
-                        if (itemName.equals(shop.AccessoryItem[j])) {
-                            myPlayer.cost -= shop.buyCost[3];
-                            break;
-                        }
-                    }
 
-                    if (shop.getPlayerId()) {
-
-                        addPlus(myPlayer.inventory, itemName);
-                        break;
-                    }
-
-                }
-
-            }
-
-        }
-    }
-
-    // 상점에서 아이템 구매시 배열에 추가하는 메소드
-    String[] addPlus(String[]itemArrs, String itemName) {
-        String[] temp = new String[itemArrs.length + 1];
-
-        //2. 기존 배열 데이터를 복사해서 신규배열로 이동
-        for (int i = 0; i < itemArrs.length; i++) {
-            temp[i] = itemArrs[i];
-        }
-        //3. 추가할 데이터를 맨 마지막 위치에 저장
-        temp[temp.length - 1] = itemName;
-
-        //5. 주소지 이전
-        myPlayer.inventory = temp;
-        temp = null;
-        return itemArrs;
-    }
     //---------------------------------------end sub shop method-----------------------------------//
 
     ///////////// 3. 아이템 강화 메뉴 ///////////////
